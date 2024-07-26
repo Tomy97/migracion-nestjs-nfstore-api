@@ -9,17 +9,13 @@ ConfigModule.forRoot({
 const configService = new ConfigService();
 export const DataSourceConfig: DataSourceOptions = {
   type: 'mysql',
-  host: configService.get('DB_HOST'),
-  port: configService.get('DB_PORT'),
-  username: configService.get('DB_USER'),
-  password: configService.get('DB_PASSWORD'),
-  database: configService.get('DB_NAME'),
+  host: configService.get('DB_HOST' || 'DATABASE_HOST'),
+  port: configService.get('DB_PORT' || 'DATABASE_PORT'),
+  username: configService.get('DB_USER' || 'DATABASE_USER'),
+  password: configService.get('DB_PASSWORD' || 'DATABASE_PASSWORD'),
+  database: configService.get('DB_NAME' || 'DATABASE_NAME'),
   entities: [__dirname + '/../**/**/*.entity{.ts,.js}'],
-  synchronize: true,
-  migrations: [__dirname + '/../../migrations/*{.ts,.js}'],
-  migrationsRun: true,
-  logging: false,
-  namingStrategy: new SnakeNamingStrategy(),
+  synchronize: true
 };
 
 export const AppDs = new DataSource(DataSourceConfig);

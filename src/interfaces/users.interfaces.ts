@@ -1,8 +1,12 @@
+import { Wallet } from '@/wallet/entities/wallet.entity';
+
 export interface IUser {
-  name: string;
-  username: string;
+  id: number;
   email: string;
   password: string;
+  name?: string;
   avatar: string;
-  role: string;
+  permissions: string;
+  wallet: Wallet;
+  lastLoginAt: Date | null;
 }
